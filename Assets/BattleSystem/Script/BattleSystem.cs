@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor.SearchService;
+using UnityEngine.SceneManagement;
 
 public class BattleSystem : MonoBehaviour
 {
@@ -46,6 +48,8 @@ public class BattleSystem : MonoBehaviour
         if (playerCurrentHP <= 0)
         {
             EndBattle(false); // プレイヤー敗北
+            
+            SceneManager.LoadScene("Sample");
         }
     }
     public void HealPlayer(int healAmount)

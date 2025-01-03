@@ -10,8 +10,8 @@ public class GameController : MonoBehaviour
     public Transform[] spawnPoints;    // 敵の出現地点
     private Vector3 playerStartPosition; // プレイヤーの元の位置
     private bool isInBattle = false;   // 戦闘中フラグ
-    private string explorationSceneName = "stage1"; // 探索シーン名
-    private string battleSceneName = "SampleScene";           // 戦闘シーン名
+    private string explorationSceneName = "SampleScene"; // 探索シーン名
+    private string battleSceneName = "BattleScene";           // 戦闘シーン名
 
     void Start()
     {
@@ -20,19 +20,19 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if (!isInBattle)
-        {
-            CheckForRandomEncounter();
-        }
+        // if (!isInBattle)
+        // {
+        //     CheckForRandomEncounter();
+        // }
     }
 
-    void CheckForRandomEncounter()
-    {
-        if (Random.value < 0.0005f) // 1%の確率でエンカウント
-        {
-            StartBattle();
-        }
-    }
+    // void CheckForRandomEncounter()
+    // {
+    //     if (Random.value < 0.0005f) // 1%の確率でエンカウント
+    //     {
+    //         StartBattle();
+    //     }
+    // }
 
     void StartBattle()
     {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class EnemyController : MonoBehaviour
      private bool isAttacking = false; // 攻撃中かどうか
 
     private BattleSystem battleSystem; // バトルシステムへの参照
-     private float hitChance = 0.5f; // 攻撃が当たる確率（80%）
+     private float hitChance = 0.7f; // 攻撃が当たる確率（70%）
 
     void Start()
     {
@@ -31,10 +32,11 @@ public class EnemyController : MonoBehaviour
     // 敵がプレイヤーを攻撃する
    public IEnumerator EnemyAttackRoutine()
 {
+    Debug.Log("a");
     isAttacking = true;
-     yield return new WaitForSeconds(attackDelay); // 遅延時間を待機
+    yield return new WaitForSeconds(attackDelay); // 遅延時間を待機
 
-    if (battleSystem.IsBattleActive && currentHP > 0)
+    if ( currentHP > 0)//battleSystem.IsBattleActive &&
         {
             bool attackHit = DetermineAttackHit(); // 攻撃が当たるかどうかを判定
 
@@ -78,7 +80,8 @@ public class EnemyController : MonoBehaviour
     {
         Debug.Log($"{enemyName} was defeated!");
          FindObjectOfType<GameController>().EndBattle(true);
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 2f);
+        SceneManager.LoadScene("SampleScene");
     }
     private void NotifyDestruction()
 {

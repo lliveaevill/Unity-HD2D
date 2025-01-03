@@ -125,6 +125,18 @@ public class taiping : MonoBehaviour
             resultDisplay.text = $"Time's up!";
             StartCoroutine(HideResultDisplayAfterDelay(2f));
         }
+         if (targetEnemy != null && targetEnemy.CurrentHP <= 0)
+        {
+            FindObjectOfType<GameController>().EndBattle(true);
+        }
+        else
+        {
+            if (battleSystem != null)
+            {
+                battleSystem.StartEnemyAttack();
+            }
+            StartCoroutine(CooldownRoutine()); // クールタイム開始
+        }
 
         fightButton.interactable = true;
     }
@@ -159,18 +171,18 @@ public class taiping : MonoBehaviour
         resultDisplay.text = $"All spells executed!";
         StartCoroutine(HideResultDisplayAfterDelay(2f));
 
-        if (targetEnemy != null && targetEnemy.CurrentHP <= 0)
-        {
-            FindObjectOfType<GameController>().EndBattle(true);
-        }
-        else
-        {
-            if (battleSystem != null)
-            {
-                battleSystem.StartEnemyAttack();
-            }
-            StartCoroutine(CooldownRoutine()); // クールタイム開始
-        }
+        // if (targetEnemy != null && targetEnemy.CurrentHP <= 0)
+        // {
+        //     FindObjectOfType<GameController>().EndBattle(true);
+        // }
+        // else
+        // {
+        //     if (battleSystem != null)
+        //     {
+        //         battleSystem.StartEnemyAttack();
+        //     }
+        //     StartCoroutine(CooldownRoutine()); // クールタイム開始
+        // }
     }
 
     private IEnumerator CooldownRoutine()
